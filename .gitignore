@@ -1,0 +1,26 @@
+# Dependencies (both folder and junction)
+node_modules
+node_modules/
+**/node_modules
+**/node_modules/
+RecipeKu/node_modules
+RecipeKu/node_modules/
+UTS_PEMROGRAMAN_MOBILE_LANJUT/02_SOAL_2_RECIPEKU/source-code/node_modules
+UTS_PEMROGRAMAN_MOBILE_LANJUT/02_SOAL_2_RECIPEKU/source-code/node_modules/
+
+# Expo & Build Outputs
+.expo
+.expo/
+**/.expo
+**/.expo/
+dist
+dist/
+**/dist
+**/dist/
+web-build
+web-build/
+
+# Logs & OS Files
+npm-debug.*
+.DS_Store
+Thumbs.db

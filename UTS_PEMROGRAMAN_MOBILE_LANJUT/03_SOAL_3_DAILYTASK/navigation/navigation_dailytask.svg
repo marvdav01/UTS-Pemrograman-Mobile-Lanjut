@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" width="960" height="540" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="960" height="540" fill="#F8FAFC"/>
+  <text x="480" y="34" font-size="18" font-weight="bold" text-anchor="middle" fill="#0F172A">DIAGRAM NAVIGASI ANTARHALAMAN DAILYTASK (9 SCREENS)</text>
+
+  <defs>
+    <marker id="navArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2563EB" />
+    </marker>
+  </defs>
+
+  <!-- Auth Stack Box -->
+  <rect x="30" y="65" width="230" height="230" rx="12" fill="#EFF6FF" stroke="#93C5FD" stroke-width="2" stroke-dasharray="6,4"/>
+  <text x="145" y="90" font-size="13" font-weight="bold" text-anchor="middle" fill="#1E3A8A">AUTH STACK NAVIGATOR</text>
+
+  <rect x="55" y="110" width="180" height="60" rx="8" fill="#FFFFFF" stroke="#2563EB" stroke-width="2"/>
+  <text x="145" y="136" font-size="13" font-weight="bold" text-anchor="middle" fill="#0F172A">1. Login Screen</text>
+  <text x="145" y="154" font-size="10" text-anchor="middle" fill="#475569">Input Email &amp; Password</text>
+
+  <rect x="55" y="210" width="180" height="60" rx="8" fill="#FFFFFF" stroke="#2563EB" stroke-width="2"/>
+  <text x="145" y="236" font-size="13" font-weight="bold" text-anchor="middle" fill="#0F172A">2. Register Screen</text>
+  <text x="145" y="254" font-size="10" text-anchor="middle" fill="#475569">Pendaftaran Akun Baru</text>
+
+  <line x1="145" y1="170" x2="145" y2="210" stroke="#2563EB" stroke-width="2" marker-start="url(#navArrow)" marker-end="url(#navArrow)"/>
+
+  <!-- Bottom Tab Box -->
+  <rect x="310" y="65" width="620" height="155" rx="12" fill="#F0FDF4" stroke="#86EFAC" stroke-width="2" stroke-dasharray="6,4"/>
+  <text x="620" y="90" font-size="13" font-weight="bold" text-anchor="middle" fill="#14532D">MAIN BOTTOM TAB NAVIGATOR (SETELAH LOGIN)</text>
+
+  <rect x="330" y="110" width="135" height="80" rx="8" fill="#FFFFFF" stroke="#16A34A" stroke-width="2"/>
+  <text x="397" y="142" font-size="12" font-weight="bold" text-anchor="middle" fill="#0F172A">3. Dashboard</text>
+  <text x="397" y="158" font-size="11" font-weight="bold" text-anchor="middle" fill="#0F172A">Screen</text>
+  <text x="397" y="176" font-size="10" text-anchor="middle" fill="#475569">Tab 1: Beranda</text>
+
+  <rect x="480" y="110" width="135" height="80" rx="8" fill="#FFFFFF" stroke="#16A34A" stroke-width="2"/>
+  <text x="547" y="142" font-size="12" font-weight="bold" text-anchor="middle" fill="#0F172A">4. Task List</text>
+  <text x="547" y="158" font-size="11" font-weight="bold" text-anchor="middle" fill="#0F172A">Screen</text>
+  <text x="547" y="176" font-size="10" text-anchor="middle" fill="#475569">Tab 2: Daftar Tugas</text>
+
+  <rect x="630" y="110" width="135" height="80" rx="8" fill="#FFFFFF" stroke="#16A34A" stroke-width="2"/>
+  <text x="697" y="142" font-size="12" font-weight="bold" text-anchor="middle" fill="#0F172A">8. History</text>
+  <text x="697" y="158" font-size="11" font-weight="bold" text-anchor="middle" fill="#0F172A">Screen</text>
+  <text x="697" y="176" font-size="10" text-anchor="middle" fill="#475569">Tab 3: Riwayat</text>
+
+  <rect x="780" y="110" width="135" height="80" rx="8" fill="#FFFFFF" stroke="#16A34A" stroke-width="2"/>
+  <text x="847" y="142" font-size="12" font-weight="bold" text-anchor="middle" fill="#0F172A">9. Profile</text>
+  <text x="847" y="158" font-size="11" font-weight="bold" text-anchor="middle" fill="#0F172A">Screen</text>
+  <text x="847" y="176" font-size="10" text-anchor="middle" fill="#475569">Tab 4: Profil &amp; Akun</text>
+
+  <!-- Arrow Login to Dashboard -->
+  <line x1="235" y1="140" x2="330" y2="140" stroke="#2563EB" stroke-width="2.5" marker-end="url(#navArrow)"/>
+  <text x="282" y="132" font-size="10" font-weight="bold" text-anchor="middle" fill="#1D4ED8">Login Sukses</text>
+
+  <!-- Task Stack Screens Box -->
+  <rect x="310" y="280" width="620" height="220" rx="12" fill="#FFFBEB" stroke="#FCD34D" stroke-width="2" stroke-dasharray="6,4"/>
+  <text x="620" y="305" font-size="13" font-weight="bold" text-anchor="middle" fill="#92400E">TASK NATIVE STACK NAVIGATOR (DETAIL &amp; FORMULIR CRUD)</text>
+
+  <rect x="340" y="340" width="165" height="75" rx="8" fill="#FFFFFF" stroke="#D97706" stroke-width="2"/>
+  <text x="422" y="370" font-size="12" font-weight="bold" text-anchor="middle" fill="#0F172A">5. Add Task Screen</text>
+  <text x="422" y="390" font-size="10" text-anchor="middle" fill="#475569">Form Tambah Tugas Baru</text>
+
+  <rect x="540" y="340" width="165" height="75" rx="8" fill="#FFFFFF" stroke="#D97706" stroke-width="2"/>
+  <text x="622" y="370" font-size="12" font-weight="bold" text-anchor="middle" fill="#0F172A">7. Task Detail Screen</text>
+  <text x="622" y="390" font-size="10" text-anchor="middle" fill="#475569">Detail, Selesai, &amp; Hapus</text>
+
+  <rect x="740" y="340" width="165" height="75" rx="8" fill="#FFFFFF" stroke="#D97706" stroke-width="2"/>
+  <text x="822" y="370" font-size="12" font-weight="bold" text-anchor="middle" fill="#0F172A">6. Edit Task Screen</text>
+  <text x="822" y="390" font-size="10" text-anchor="middle" fill="#475569">Form Ubah Data Tugas</text>
+
+  <!-- Connections between Tabs and Stack -->
+  <line x1="397" y1="190" x2="422" y2="340" stroke="#2563EB" stroke-width="2" marker-end="url(#navArrow)"/>
+  <line x1="547" y1="190" x2="440" y2="340" stroke="#2563EB" stroke-width="2" marker-end="url(#navArrow)"/>
+  <line x1="547" y1="190" x2="610" y2="340" stroke="#2563EB" stroke-width="2" marker-end="url(#navArrow)"/>
+  <line x1="697" y1="190" x2="635" y2="340" stroke="#2563EB" stroke-width="2" marker-end="url(#navArrow)"/>
+  <line x1="705" y1="377" x2="740" y2="377" stroke="#2563EB" stroke-width="2" marker-start="url(#navArrow)" marker-end="url(#navArrow)"/>
+</svg>
+

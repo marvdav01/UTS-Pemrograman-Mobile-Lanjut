@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 375 812" width="375" height="812" font-family="Segoe UI, Arial, sans-serif">
+    <rect width="375" height="812" rx="32" fill="#F8FAFC" stroke="#1E293B" stroke-width="6"/>
+    <rect x="6" y="6" width="363" height="32" rx="20" fill="#FFFFFF"/>
+    <text x="28" y="26" font-size="11" font-weight="bold" fill="#0F172A">09:41</text>
+    <text x="345" y="26" font-size="11" font-weight="bold" text-anchor="end" fill="#0F172A">5G 100%</text>
+    <rect x="6" y="38" width="363" height="52" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="24" y="70" font-size="17" font-weight="bold" fill="#0F172A">← Detail Tugas</text>
+    
+      <rect x="24" y="112" width="327" height="220" rx="16" fill="#FFFFFF" stroke="#E2E8F0"/>
+      <rect x="42" y="132" width="125" height="26" rx="13" fill="#FEE2E2"/>
+      <text x="104" y="149" font-size="11" font-weight="bold" text-anchor="middle" fill="#DC2626">🔴 PRIORITAS TINGGI</text>
+
+      <rect x="176" y="132" width="90" height="26" rx="13" fill="#FEF3C7"/>
+      <text x="221" y="149" font-size="11" font-weight="bold" text-anchor="middle" fill="#D97706">⏳ PENDING</text>
+
+      <text x="42" y="188" font-size="17" font-weight="bold" fill="#0F172A">Menyelesaikan Laporan UTS</text>
+      <text x="42" y="210" font-size="17" font-weight="bold" fill="#0F172A">Pemrograman Mobile Lanjut</text>
+
+      <text x="42" y="244" font-size="12" fill="#475569">Menyusun jawaban analisis e-commerce Soal 1,</text>
+      <text x="42" y="264" font-size="12" fill="#475569">membangun aplikasi RecipeKu Soal 2, serta</text>
+      <text x="42" y="284" font-size="12" fill="#475569">dokumen rancangan DailyTask pada Soal 3.</text>
+
+      <rect x="24" y="348" width="327" height="115" rx="16" fill="#FFFFFF" stroke="#E2E8F0"/>
+      <text x="42" y="378" font-size="12" fill="#64748B">📅 Batas Waktu:</text>
+      <text x="333" y="378" font-size="12" font-weight="bold" text-anchor="end" fill="#0F172A">14 Nov 2026, 23:59 WIB</text>
+      <text x="42" y="408" font-size="12" fill="#64748B">🕒 Dibuat Pada:</text>
+      <text x="333" y="408" font-size="12" text-anchor="end" fill="#475569">14 Nov 2026, 07:30 WIB</text>
+      <text x="42" y="438" font-size="12" fill="#64748B">🔄 Terakhir Diubah:</text>
+      <text x="333" y="438" font-size="12" text-anchor="end" fill="#475569">14 Nov 2026, 11:20 WIB</text>
+
+      <rect x="24" y="500" width="327" height="48" rx="12" fill="#16A34A"/>
+      <text x="187" y="529" font-size="14" font-weight="bold" text-anchor="middle" fill="#FFFFFF">✓ Tandai Tugas Selesai</text>
+
+      <rect x="24" y="562" width="327" height="48" rx="12" fill="#EFF6FF" stroke="#93C5FD"/>
+      <text x="187" y="591" font-size="14" font-weight="bold" text-anchor="middle" fill="#2563EB">✏️ Edit Tugas</text>
+
+      <rect x="24" y="624" width="327" height="48" rx="12" fill="#FEE2E2" stroke="#FCA5A5"/>
+      <text x="187" y="653" font-size="14" font-weight="bold" text-anchor="middle" fill="#DC2626">🗑️ Hapus Tugas Ini</text>
+    
+    
+  </svg>

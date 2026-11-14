@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 375 812" width="375" height="812" font-family="Segoe UI, Arial, sans-serif">
+    <rect width="375" height="812" rx="32" fill="#F8FAFC" stroke="#1E293B" stroke-width="6"/>
+    <rect x="6" y="6" width="363" height="32" rx="20" fill="#FFFFFF"/>
+    <text x="28" y="26" font-size="11" font-weight="bold" fill="#0F172A">09:41</text>
+    <text x="345" y="26" font-size="11" font-weight="bold" text-anchor="end" fill="#0F172A">5G 100%</text>
+    <rect x="6" y="38" width="363" height="52" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="24" y="70" font-size="17" font-weight="bold" fill="#0F172A">← Tambah Tugas Baru</text>
+    
+      <rect x="24" y="112" width="327" height="470" rx="16" fill="#FFFFFF" stroke="#E2E8F0"/>
+
+      <text x="42" y="146" font-size="11" font-weight="bold" fill="#64748B">JUDUL TUGAS *</text>
+      <rect x="42" y="156" width="291" height="44" rx="10" fill="#F8FAFC" stroke="#CBD5E1"/>
+      <text x="56" y="183" font-size="13" fill="#0F172A">Presentasi Proyek Akhir Mobile</text>
+
+      <text x="42" y="226" font-size="11" font-weight="bold" fill="#64748B">DESKRIPSI / CATATAN</text>
+      <rect x="42" y="236" width="291" height="90" rx="10" fill="#F8FAFC" stroke="#CBD5E1"/>
+      <text x="56" y="262" font-size="12" fill="#475569">Menyiapkan slide arsitektur React Native</text>
+      <text x="56" y="280" font-size="12" fill="#475569">dan demo aplikasi di emulator.</text>
+
+      <text x="42" y="354" font-size="11" font-weight="bold" fill="#64748B">TINGKAT PRIORITAS *</text>
+      <rect x="42" y="366" width="90" height="38" rx="10" fill="#DCFCE7"/>
+      <text x="87" y="390" font-size="12" font-weight="bold" text-anchor="middle" fill="#16A34A">Low</text>
+
+      <rect x="142" y="366" width="90" height="38" rx="10" fill="#FEF3C7"/>
+      <text x="187" y="390" font-size="12" font-weight="bold" text-anchor="middle" fill="#D97706">Medium</text>
+
+      <rect x="242" y="366" width="91" height="38" rx="10" fill="#FEE2E2" stroke="#DC2626" stroke-width="2"/>
+      <text x="287" y="390" font-size="12" font-weight="bold" text-anchor="middle" fill="#DC2626">High ✓</text>
+
+      <text x="42" y="434" font-size="11" font-weight="bold" fill="#64748B">BATAS WAKTU (DUE DATE) *</text>
+      <rect x="42" y="444" width="291" height="44" rx="10" fill="#F8FAFC" stroke="#CBD5E1"/>
+      <text x="56" y="471" font-size="13" fill="#0F172A">📅 16 November 2026 • 14:00 WIB</text>
+
+      <rect x="42" y="512" width="291" height="48" rx="12" fill="#2563EB"/>
+      <text x="187" y="541" font-size="14" font-weight="bold" text-anchor="middle" fill="#FFFFFF">💾 Simpan Tugas Baru</text>
+    
+    
+  </svg>

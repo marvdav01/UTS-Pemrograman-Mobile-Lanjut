@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wireframe UI/UX DailyTask – 9 Halaman Smartphone</title>
+  <style>
+    :root {
+      --primary: #2563EB;
+      --primary-dark: #1E40AF;
+      --primary-soft: #DBEAFE;
+      --success: #16A34A;
+      --success-soft: #DCFCE7;
+      --warning: #D97706;
+      --warning-soft: #FEF3C7;
+      --danger: #DC2626;
+      --danger-soft: #FEE2E2;
+      --bg: #F1F5F9;
+      --phone-bg: #F8FAFC;
+      --card: #FFFFFF;
+      --text: #0F172A;
+      --muted: #64748B;
+      --border: #E2E8F0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+      background: #0F172A;
+      color: var(--text);
+      padding: 32px 24px 64px;
+    }
+    .page-header {
+      max-width: 1320px;
+      margin: 0 auto 32px;
+      text-align: center;
+      color: #FFFFFF;
+    }
+    .page-header h1 {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .page-header p {
+      color: #94A3B8;
+      font-size: 15px;
+    }
+    .grid {
+      max-width: 1320px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 32px;
+      justify-items: center;
+    }
+    .screen-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .screen-badge {
+      background: #1E293B;
+      color: #60A5FA;
+      border: 1px solid #334155;
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .phone {
+      width: 350px;
+      height: 720px;
+      background: var(--phone-bg);
+      border-radius: 38px;
+      border: 10px solid #1E293B;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.45);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+    }
+    .status-bar {
+      height: 28px;
+      background: var(--card);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 18px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text);
+      border-bottom: 1px solid #F1F5F9;
+    }
+    .app-bar {
+      background: var(--card);
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .app-bar h2 {
+      font-size: 16px;
+      font-weight: 800;
+    }
+    .content {
+      flex: 1;
+      padding: 16px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px;
+    }
+    .hero-card {
+      background: linear-gradient(135deg, #2563EB, #1D4ED8);
+      color: #FFFFFF;
+      border-radius: 16px;
+      padding: 16px;
+    }
+    .label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 5px;
+      display: block;
+    }
+    .input-box {
+      background: #FFFFFF;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 12.5px;
+      color: var(--text);
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .btn {
+      width: 100%;
+      padding: 11px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      text-align: center;
+      border: none;
+    }
+    .btn-primary { background: var(--primary); color: #FFF; }
+    .btn-success { background: var(--success); color: #FFF; }
+    .btn-danger { background: var(--danger-soft); color: var(--danger); border: 1px solid #FECACA; }
+    .btn-outline { background: #FFF; color: var(--text); border: 1px solid var(--border); }
+    .badge {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 99px;
+      font-size: 10px;
+      font-weight: 800;
+    }
+    .badge-high { background: var(--danger-soft); color: var(--danger); }
+    .badge-med { background: var(--warning-soft); color: var(--warning); }
+    .badge-low { background: var(--success-soft); color: var(--success); }
+    .badge-done { background: var(--primary-soft); color: var(--primary); }
+    .bottom-nav {
+      height: 58px;
+      background: var(--card);
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+    .nav-item { text-align: center; }
+    .nav-item.active { color: var(--primary); }
+    .task-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: #FFF;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 11px;
+    }
+    .check-circle {
+      width: 18px;
+      height: 18px;
+      border-radius: 5px;
+      border: 2px solid var(--primary);
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+    .check-circle.done {
+      background: var(--success);
+      border-color: var(--success);
+      color: #FFF;
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .desc-caption {
+      margin-top: 10px;
+      width: 340px;
+      color: #CBD5E1;
+      font-size: 12px;
+      text-align: center;
+      line-height: 1.45;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-header">
+    <h1>WIREFRAME UI/UX DAILYTASK – 9 HALAMAN SMARTPHONE</h1>
+    <p>Rancangan Proyek Aplikasi Mobile React Native (Soal 3 UTS Pemrograman Mobile Lanjut)</p>
+  </div>
+
+  <div class="grid">
+    <!-- 1. LOGIN SCREEN -->
+    <div class="screen-wrapper">
+      <div class="screen-badge">1. Login Screen</div>
+      <div class="phone">
+        <div class="status-bar"><span>09:41</span><span>5G 100%</span></div>
+        <div class="content" style="justify-content:center;">
+          <div style="text-align:center; margin-bottom:14px;">
+            <div style="width:60px;height:60px;border-radius:16px;background:#2563EB;color:#FFF;font-size:28px;display:inline-flex;align-items:center;justify-content:center;margin-bottom:10px;">✓</div>
+            <h2 style="font-size:22px;font-weight:800;">DailyTask</h2>
+            <p style="font-size:12px;color:#64748B;">Kelola jadwal &amp; prioritas harian Anda</p>
+          </div>
+          <div class="card">
+            <span class="label">ALAMAT EMAIL</span>
+            <div class="input-box"><span>✉️ budi.santoso@undira.ac.id</span></div>
+            <span class="label">KATA SANDI</span>
+            <div class="input-box"><span>🔒 ••••••••••••</span><span>👁️</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:11px;margin:6px 0 14px;color:#475569;">
+              <span>☑️ Ingat Saya</span><span style="color:#2563EB;font-weight:700;">Lupa Sandi?</span>
+            </div>
+            <div class="btn btn-primary">Masuk Sekarang →</div>
+          </div>
+          <p style="text-align:center;font-size:12px;color:#64748B;margin-top:8px;">
+            Belum punya akun? <strong style="color:#2563EB;">Daftar Akun Baru</strong>
+          </p>
+        </div>
+      </div>
+      <p class="desc-caption">Autentikasi pengguna terdaftar menuju Dashboard dengan validasi email &amp; password (POST /api/login).</p>
+    </div>
+
+    <!-- 2. REGISTER SCREEN -->
+    <div class="screen-wrapper">
+      <div class="screen-badge">2. Register Screen</div>
+      <div class="phone">
+        <div class="status-bar"><span>09:41</span><span>5G 100%</span></div>
+        <div class="app-bar"><span>← Kembali</span><h2>Buat Akun Baru</h2><span></span></div>
+        <div class="content">
+          <p style="font-size:12px;color:#64748B;">Lengkapi data diri Anda untuk mulai mencatat dan memantau aktivitas harian.</p>
+          <div class="card">
+            <span class="label">NAMA LENGKAP</span>
+            <div class="input-box"><span>👤 Budi Santoso</span></div>
+            <span class="label">ALAMAT EMAIL</span>
+            <div class="input-box"><span>✉️ budi.santoso@undira.ac.id</span></div>
+            <span class="label">KATA SANDI</span>
+            <div class="input-box"><span>🔒 Minimal 8 karakter</span><span>👁️</span></div>
+            <span class="label">KONFIRMASI KATA SANDI</span>
+            <div class="input-box"><span>🔒 Ulangi kata sandi</span><span>✓</span></div>
+            <div class="btn btn-primary" style="margin-top:8px;">Daftar Akun</div>
+          </div>
+          <p style="text-align:center;font-size:12px;color:#64748B;">
+            Sudah memiliki akun? <strong style="color:#2563EB;">Masuk di sini</strong>
+          </p>
+        </div>
+      </div>
+      <p class="desc-caption">Formulir pendaftaran akun pengguna baru dan penyimpanan ke tabel users (POST /api/register).</p>
+    </div>
+
+    <!-- 3. DASHBOARD SCREEN -->
+    <div class="screen-wrapper">
+      <div class="screen-badge">3. Dashboard Screen</div>
+      <div class="phone">
+        <div class="status-bar"><span>09:41</span><span>5G 100%</span></div>
+        <div class="app-bar">
+          <div><div style="font-size:11px;color:#64748B;">Sabtu, 14 Nov 2026</div><h2>Halo, Budi Santoso 👋</h2></div>
+          <div style="width:34px;height:34px;border-radius:17px;background:#DBEAFE;color:#1D4ED8;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:12px;">BS</div>
+        </div>
+        <div class="content">
+          <div class="hero-card">
+            <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:6px;">
+              <span>Progres Harian Anda</span><strong>6 dari 8 Selesai (75%)</strong>
+            </div>
+            <div style="height:8px;background:rgba(255,255,255,0.25);border-radius:99px;overflow:hidden;margin-bottom:8px;">
+              <div style="width:75%;height:100%;background:#4ADE80;"></div>
+            </div>
+            <div style="font-size:11px;color:#DBEAFE;">Tinggal 2 tugas prioritas tinggi hari ini!</div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center;">
+            <div class="card"><div style="font-size:16px;font-weight:800;color:#D97706;">2</div><div style="font-size:10px;color:#64748B;">Pending</div></div>
+            <div class="card"><div style="font-size:16px;font-weight:800;color:#2563EB;">1</div><div style="font-size:10px;color:#64748B;">Proses</div></div>
+            <div class="card"><div style="font-size:16px;font-weight:800;color:#16A34A;">6</div><div style="font-size:10px;color:#64748B;">Selesai</div></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <strong style="font-size:13px;">Tugas Prioritas Hari Ini</strong>
+            <span style="font-size:11px;color:#2563EB;font-weight:700;">Lihat Semua →</span>
+          </div>
+          <div class="task-row">
+            <div class="check-circle"></div>
+            <div style="flex:1;">
+              <div style="display:flex;justify-content:space-between;"><strong style="font-size:12px;">Laporan UTS Mobile Lanjut</strong><span class="badge badge-high">HIGH</span></div>
+              <div style="font-size:11px;color:#64748B;margin-top:3px;">⏰ Tenggat: Hari ini, 23:59</div>
+            </div>
+          </div>
+          <div class="task-row">
+            <div class="check-circle"></div>
+            <div style="flex:1;">
+              <div style="display:flex;justify-content:space-between;"><strong style="font-size:12px;">Rapat Kelompok Proyek</strong><span class="badge badge-med">MEDIUM</span></div>
+              <div style="font-size:11px;color:#64748B;margin-top:3px;">⏰ Tenggat: 16:00 WIB</div>
+            </div>
+          </div>
+          <div class="btn btn-primary" style="margin-top:auto;">+ Tambah Tugas Baru</div>
+        </div>
+        <div class="bottom-nav">
+          <div class="nav-item active">🏠<div>Beranda</div></div>
+          <div class="nav-item">📋<div>Tugas</div></div>
+          <div class="nav-item">🕒<div>Riwayat</div></div>
+          <div class="nav-item">👤<div>Profil</div></div>
+        </div>
+      </div>
+      <p class="desc-caption">Ringkasan metrik harian, persentase penyelesaian tugas, dan akses cepat tambah tugas.</p>
+    </div>
+
+    <!-- 4. DAFTAR TUGAS (TASK LIST SCREEN) -->
+    <div class="screen-wrapper">
+      <div class="screen-badge">4. Daftar Tugas (Task List)</div>
+      <div class="phone">
+        <div class="status-bar"><span>09:41</span><span>5G 100%</span></div>
+        <div class="app-bar"><h2>Daftar Tugas Saya</h2><span style="color:#2563EB;font-weight:800;font-size:12px;">+ Tugas Baru</span></div>
+        <div class="content">
+          <div class="input-box" style="margin-bottom:4px;"><span>🔍 Cari judul tugas...</span><span>✕</span></div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <span class="badge badge-done" style="padding:5px 10px;">Semua (9)</span>
+            <span class="badge" style="background:#E2E8F0;padding:5px 10px;">Pending (2)</span>
+            <span class="badge badge-high" style="padding:5px 10px;">Prioritas Tinggi</span>
+          </div>
+          <div class="task-row">
+            <div class="check-circle"></div>
+            <div style="flex:1;">
+              <div style="display:flex;justify-content:space-between;"><strong style="font-size:12px;">Laporan UTS Mobile Lanjut</strong><span class="badge badge-high">HIGH</span></div>
+              <div style="font-size:11px;color:#64748B;margin-top:3px;">📅 14 Nov 2026 • Belum Selesai</div>
+            </div>
+          </div>
+          <div class="task-row">
+            <div class="check-circle"></div>
+            <div style="flex:1;">
+              <div style="display:flex;justify-content:space-between;"><strong style="font-size:12px;">Review Wireframe UI/UX</strong><span class="badge badge-med">MEDIUM</span></div>
+              <div style="font-size:11px;color:#64748B;margin-top:3px;">📅 15 Nov 2026 • Sedang Proses</div>
+            </div>
+          </div>
+          <div class="task-row">
+            <div class="check-circle done">✓</div>
+            <div style="flex:1;">
+              <div style="display:flex;justify-content:space-between;"><strong style="font-size:12px;text-decoration:line-through;color:#64748B;">Instalasi Expo &amp; TanStack</strong><span class="badge badge-low">LOW</span></div>
+              <div style="font-size:11px;color:#16A34A;margin-top:3px;">✓ Selesai • 14 Nov 2026</div>
+            </div>
+          </div>
+        </div>
+        <div class="bottom-nav">
+          <div class="nav-item">🏠<div>Beranda</div></div>
+          <div class="nav-item active">📋<div>Tugas</div></div>
+          <div class="nav-item">🕒<div>Riwayat</div></div>
+          <div class="nav-item">👤<div>Profil</div></div>
+        </div>
+      </div>
+      <p class="desc-caption">Menampilkan seluruh tugas dengan fitur pencarian, filter prioritas/status, dan centang selesai cepat.</p>
+    </div>
+
+    <!-- 5. TAMBAH TUGAS (ADD TASK SCREEN) -->
+    <div class="screen-wrapper">
+      <div class="screen-badge">5. Tambah Tugas (Add Task)</div>
+      <div class="phone">
+        <div class="status-bar"><span>09:41</span><span>5G 100%</span></div>
+        <div class="app-bar"><span>← Batal</span><h2>Tambah Tugas Baru</h2><span></span></div>
+        <div class="content">
+          <div class="card">
+            <span class="label">JUDUL TUGAS *</span>
+            <div class="input-box"><span>Presentasi Proyek Akhir Mobile</span></div>
+            <span class="label">DESKRIPSI / CATATAN TUGAS</span>
+            <div class="input-box" style="height:72px;align-items:flex-start;"><span>Menyiapkan slide arsitektur React Native dan demo aplikasi.</span></div>
+            <span class="label">TINGKAT PRIORITAS *</span>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:12px;">
+              <div class="badge badge-low" style="text-align:center;padding:8px;">🟢 Low</div>
+              <div class="badge badge-med" style="text-align:center;padding:8px;">🟡 Medium</div>
+              <div class="badge badge-high" style="text-align:center;padding:8px;border:2px solid #DC2626;">🔴 High ✓</div>
+            </div>
+            <span class="label">BATAS WAKTU (DUE DATE) *</span>
+            <div class="input-box"><span>📅 16 November 2026 • 14:00 WIB</span><span>▾</span></div>
+          </div>
+          <div class="btn btn-primary" style="margin-top:auto;">💾 Simpan Tugas Baru</div>
+        </div>
+      </div>
+      <p class="desc-caption">Formulir pembuatan tugas baru lengkap dengan pemilih tingkat prioritas dan tenggat waktu (POST /api/tasks).</p>
+    </div>
+
+    <!-- 6. EDIT TUGAS (EDIT TASK SCREEN) -->
+    <div class="screen-wrapper">
+      <div class="screen-badge">6. Edit Tugas (Edit Task)</div>
+      <div class="phone">
+        <div class="status-bar"><span>09:41</span><span>5G 100%</span></div>
+        <div class="app-bar"><span>← Kembali</span><h2>Edit Tugas #501</h2><span></span></div>
+        <div class="content">
+          <div class="card">
+            <span class="label">JUDUL TUGAS</span>
+            <div class="input-box"><span>Laporan UTS Mobile Lanjut (Revisi Final)</span></div>
+            <span class="label">DESKRIPSI TUGAS</span>
+            <div class="input-box" style="height:64px;align-items:flex-start;"><span>Menyelesaikan Soal 1, Soal 2 RecipeKu, dan Soal 3 DailyTask.</span></div>
+            <span class="label">UBAH PRIORITAS</span>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:10px;">
+              <div class="badge badge-low" style="text-align:center;padding:7px;">Low</div>
+              <div class="badge badge-med" style="text-align:center;padding:7px;">Medium</div>
+              <div class="badge badge-high" style="text-align:center;padding:7px;border:2px solid #DC2626;">High ✓</div>
+            </div>
+            <span class="label">STATUS PENGERJAAN</span>
+            <div class="input-box"><span>🔄 In Progress (Sedang Dikerjakan)</span><span>▾</span></div>
+            <span class="label">TENGGAT WAKTU</span>
+            <div class="input-box"><span>📅 14 Nov 2026 • 23:59 WIB</span></div>
+          </div>
+          <div class="btn btn-primary">✓ Simpan Perubahan</div>
+          <div class="btn btn-outline">Batal</div>
+        </div>
+      </div>
+      <p class="desc-caption">Formulir pembaruan atribut tugas yang sudah ada beserta perubahan status &amp; prioritas (PUT /api/tasks/{id}).</p>
+    </div>
+
+    <!-- 7. DETAIL TUGAS (TASK DETAIL SCREEN) -->
+    <div class="screen-wrapper">
+      <div class="screen-badge">7. Detail Tugas (Task Detail)</div>
+      <div class="phone">
+        <div class="status-bar"><span>09:41</span><span>5G 100%</span></div>
+        <div class="app-bar"><span>← Kembali</span><h2>Detail Tugas</h2><span style="color:#2563EB;font-weight:700;">✏️ Edit</span></div>
+        <div class="content">
+          <div class="card">
+            <div style="display:flex;gap:8px;margin-bottom:8px;">
+              <span class="badge badge-high">🔴 PRIORITAS TINGGI</span>
+              <span class="badge badge-med">⏳ PENDING</span>
+            </div>
+            <h3 style="font-size:16px;font-weight:800;margin-bottom:8px;">Menyelesaikan Laporan UTS Pemrograman Mobile Lanjut</h3>
+            <p style="font-size:12px;color:#475569;line-height:1.5;">
+              Menyusun jawaban analisis e-commerce Soal 1, mengimplementasikan aplikasi RecipeKu dengan TanStack Query pada Soal 2, serta merancang arsitektur &amp; wireframe DailyTask pada Soal 3.
+            </p>
+          </div>
+          <div class="card" style="font-size:12px;display:flex;flex-direction:column;gap:6px;">
+            <div style="display:flex;justify-content:space-between;"><span style="color:#64748B;">📅 Batas Waktu:</span><strong>14 Nov 2026, 23:59 WIB</strong></div>
+            <div style="display:flex;justify-content:space-between;"><span style="color:#64748B;">🕒 Dibuat Pada:</span><span>14 Nov 2026, 07:30 WIB</span></div>
+            <div style="display:flex;justify-content:space-between;"><span style="color:#64748B;">🔄 Terakhir Diubah:</span><span>14 Nov 2026, 11:20 WIB</span></div>
+          </div>
+          <div style="margin-top:auto;display:flex;flex-direction:column;gap:8px;">
+            <div class="btn btn-success">✓ Tandai Tugas Selesai</div>
+            <div class="btn btn-danger">🗑️ Hapus Tugas Ini</div>
+          </div>
+        </div>
+      </div>
+      <p class="desc-caption">Menampilkan rincian lengkap satu tugas serta tombol aksi Selesai, Edit, dan Hapus Tugas.</p>
+    </div>
+
+    <!-- 8. RIWAYAT AKTIVITAS (HISTORY SCREEN) -->
+    <div class="screen-wrapper">
+      <div class="screen-badge">8. Riwayat Aktivitas (History)</div>
+      <div class="phone">
+        <div class="status-bar"><span>09:41</span><span>5G 100%</span></div>
+        <div class="app-bar"><h2>Riwayat Aktivitas</h2><span style="font-size:11px;color:#16A34A;font-weight:700;">19 Selesai</span></div>
+        <div class="content">
+          <div class="card" style="background:#F0FDF4;border-color:#BBF7D0;">
+            <div style="font-size:12px;font-weight:800;color:#166534;">🏆 Produktivitas Minggu Ini</div>
+            <div style="font-size:11px;color:#15803D;margin-top:2px;">Anda telah menyelesaikan 19 dari 24 tugas tepat waktu (79%).</div>
+          </div>
+          <div style="display:flex;gap:6px;">
+            <span class="badge badge-done" style="padding:5px 10px;">Hari Ini</span>
+            <span class="badge" style="background:#E2E8F0;padding:5px 10px;">7 Hari Terakhir</span>
+            <span class="badge" style="background:#E2E8F0;padding:5px 10px;">Bulan Ini</span>
+          </div>
+          <div class="task-row">
+            <div class="check-circle done">✓</div>
+            <div style="flex:1;">
+              <strong style="font-size:12px;">Instalasi Proyek Expo &amp; TanStack Query</strong>
+              <div style="font-size:11px;color:#16A34A;margin-top:2px;">Selesai pada 14 Nov 2026 • 10:15 WIB</div>
+            </div>
+          </div>
+          <div class="task-row">
+            <div class="check-circle done">✓</div>
+            <div style="flex:1;">
+              <strong style="font-size:12px;">Merancang ERD Database DailyTask</strong>
+              <div style="font-size:11px;color:#16A34A;margin-top:2px;">Selesai pada 14 Nov 2026 • 09:30 WIB</div>
+            </div>
+          </div>
+          <div class="task-row">
+            <div class="check-circle done">✓</div>
+            <div style="flex:1;">
+              <strong style="font-size:12px;">Studi Literatur REST API &amp; Caching</strong>
+              <div style="font-size:11px;color:#16A34A;margin-top:2px;">Selesai pada 13 Nov 2026 • 20:45 WIB</div>
+            </div>
+          </div>
+        </div>
+        <div class="bottom-nav">
+          <div class="nav-item">🏠<div>Beranda</div></div>
+          <div class="nav-item">📋<div>Tugas</div></div>
+          <div class="nav-item active">🕒<div>Riwayat</div></div>
+          <div class="nav-item">👤<div>Profil</div></div>
+        </div>
+      </div>
+      <p class="desc-caption">Menampilkan log kronologis tugas yang telah diselesaikan untuk evaluasi produktivitas harian/mingguan.</p>
+    </div>
+
+    <!-- 9. PROFIL PENGGUNA (PROFILE SCREEN) -->
+    <div class="screen-wrapper">
+      <div class="screen-badge">9. Profil Pengguna (Profile)</div>
+      <div class="phone">
+        <div class="status-bar"><span>09:41</span><span>5G 100%</span></div>
+        <div class="app-bar"><h2>Profil Saya</h2><span>⚙️</span></div>
+        <div class="content">
+          <div class="card" style="text-align:center;">
+            <div style="width:56px;height:56px;border-radius:28px;background:#2563EB;color:#FFF;font-size:20px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;margin-bottom:8px;">BS</div>
+            <h3 style="font-size:15px;font-weight:800;">Budi Santoso</h3>
+            <p style="font-size:11px;color:#64748B;">budi.santoso@mahasiswa.undira.ac.id</p>
+            <div style="display:flex;justify-content:space-around;margin-top:10px;padding-top:10px;border-top:1px solid #E2E8F0;font-size:11px;">
+              <div><strong>24</strong><div style="color:#64748B;">Total Tugas</div></div>
+              <div><strong>19</strong><div style="color:#16A34A;">Selesai</div></div>
+              <div><strong>79%</strong><div style="color:#2563EB;">Skor Disiplin</div></div>
+            </div>
+          </div>
+          <div class="card">
+            <span class="label">PERBARUI NAMA LENGKAP</span>
+            <div class="input-box"><span>Budi Santoso</span></div>
+            <span class="label">NOTIFIKASI PENGINGAT TENGGAT</span>
+            <div class="input-box"><span>🔔 Aktif (30 menit sebelum deadline)</span></div>
+            <div class="btn btn-primary" style="margin-bottom:8px;">Simpan Perubahan Profil</div>
+            <div class="btn btn-danger">🚪 Keluar dari Akun (Logout)</div>
+          </div>
+        </div>
+        <div class="bottom-nav">
+          <div class="nav-item">🏠<div>Beranda</div></div>
+          <div class="nav-item">📋<div>Tugas</div></div>
+          <div class="nav-item">🕒<div>Riwayat</div></div>
+          <div class="nav-item active">👤<div>Profil</div></div>
+        </div>
+      </div>
+      <p class="desc-caption">Mengelola informasi profil pengguna, preferensi pengingat, serta tombol Logout aman (POST /api/logout).</p>
+    </div>
+  </div>
+</body>
+</html>
+

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 375 812" width="375" height="812" font-family="Segoe UI, Arial, sans-serif">
+    <rect width="375" height="812" rx="32" fill="#F8FAFC" stroke="#1E293B" stroke-width="6"/>
+    <rect x="6" y="6" width="363" height="32" rx="20" fill="#FFFFFF"/>
+    <text x="28" y="26" font-size="11" font-weight="bold" fill="#0F172A">09:41</text>
+    <text x="345" y="26" font-size="11" font-weight="bold" text-anchor="end" fill="#0F172A">5G 100%</text>
+    <rect x="6" y="38" width="363" height="52" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="24" y="70" font-size="17" font-weight="bold" fill="#0F172A">Riwayat Aktivitas</text>
+    
+      <rect x="24" y="108" width="327" height="84" rx="16" fill="#F0FDF4" stroke="#86EFAC"/>
+      <text x="42" y="138" font-size="14" font-weight="bold" fill="#166534">🏆 Produktivitas Minggu Ini</text>
+      <text x="42" y="162" font-size="12" fill="#15803D">19 dari 24 tugas berhasil diselesaikan (79%)</text>
+
+      <rect x="24" y="208" width="90" height="30" rx="15" fill="#2563EB"/>
+      <text x="69" y="227" font-size="11" font-weight="bold" text-anchor="middle" fill="#FFFFFF">Hari Ini</text>
+      <rect x="122" y="208" width="110" height="30" rx="15" fill="#FFFFFF" stroke="#CBD5E1"/>
+      <text x="177" y="227" font-size="11" font-weight="bold" text-anchor="middle" fill="#475569">7 Hari Terakhir</text>
+
+      <rect x="24" y="254" width="327" height="76" rx="12" fill="#FFFFFF" stroke="#E2E8F0"/>
+      <rect x="40" y="276" width="22" height="22" rx="6" fill="#16A34A"/>
+      <text x="51" y="292" font-size="13" font-weight="bold" text-anchor="middle" fill="#FFFFFF">✓</text>
+      <text x="74" y="286" font-size="13" font-weight="bold" fill="#0F172A">Instalasi Proyek Expo &amp; TanStack</text>
+      <text x="74" y="308" font-size="11" fill="#16A34A">Selesai pada 14 Nov 2026 • 10:15 WIB</text>
+
+      <rect x="24" y="342" width="327" height="76" rx="12" fill="#FFFFFF" stroke="#E2E8F0"/>
+      <rect x="40" y="364" width="22" height="22" rx="6" fill="#16A34A"/>
+      <text x="51" y="380" font-size="13" font-weight="bold" text-anchor="middle" fill="#FFFFFF">✓</text>
+      <text x="74" y="374" font-size="13" font-weight="bold" fill="#0F172A">Merancang ERD Database DailyTask</text>
+      <text x="74" y="396" font-size="11" fill="#16A34A">Selesai pada 14 Nov 2026 • 09:30 WIB</text>
+
+      <rect x="24" y="430" width="327" height="76" rx="12" fill="#FFFFFF" stroke="#E2E8F0"/>
+      <rect x="40" y="452" width="22" height="22" rx="6" fill="#16A34A"/>
+      <text x="51" y="468" font-size="13" font-weight="bold" text-anchor="middle" fill="#FFFFFF">✓</text>
+      <text x="74" y="462" font-size="13" font-weight="bold" fill="#0F172A">Studi Literatur REST API &amp; Caching</text>
+      <text x="74" y="484" font-size="11" fill="#16A34A">Selesai pada 13 Nov 2026 • 20:45 WIB</text>
+    
+    
+    <rect x="6" y="740" width="363" height="66" rx="18" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="52" y="776" font-size="12" font-weight="bold" text-anchor="middle" fill="#64748B">🏠 Beranda</text>
+    <text x="142" y="776" font-size="12" font-weight="bold" text-anchor="middle" fill="#64748B">📋 Tugas</text>
+    <text x="234" y="776" font-size="12" font-weight="bold" text-anchor="middle" fill="#2563EB">🕒 Riwayat</text>
+    <text x="324" y="776" font-size="12" font-weight="bold" text-anchor="middle" fill="#64748B">👤 Profil</text>
+  
+  </svg>
