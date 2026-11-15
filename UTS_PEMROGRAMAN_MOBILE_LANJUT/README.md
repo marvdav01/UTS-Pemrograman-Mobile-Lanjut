@@ -9,7 +9,7 @@
 
 ## Struktur Direktori Pengumpulan UTS
 
-Repositori ini disusun secara sistematis mengikuti seluruh instruksi dan rubrik penilaian UTS Pemrograman Mobile Lanjut (Soal 1, Soal 2, Soal 3, Dokumentasi, dan Pengujian Quality Assurance):
+Repositori ini disusun secara sistematis mengikuti instruksi dan rubrik penilaian UTS Pemrograman Mobile Lanjut untuk **Soal 1** dan **Soal 2**, lengkap dengan dokumentasi teknis dan pengujian Quality Assurance:
 
 ```text
 UTS_PEMROGRAMAN_MOBILE_LANJUT/
@@ -38,32 +38,10 @@ UTS_PEMROGRAMAN_MOBILE_LANJUT/
 │   │   └── Hasil_Pengujian_QA_RecipeKu.md
 │   └── README.md
 │
-├── 03_SOAL_3_DAILYTASK/
-│   ├── dokumen-rancangan.md              # Dokumen utama perancangan proyek DailyTask (45%)
-│   ├── flowchart/
-│   │   ├── Flowchart_DailyTask.md
-│   │   └── flowchart_dailytask.svg
-│   ├── navigation/
-│   │   ├── Navigation_Design.md
-│   │   └── navigation_dailytask.svg
-│   ├── wireframe/
-│   │   ├── Wireframe_UI_UX.md
-│   │   ├── wireframe_dailytask.html      # Showcase interaktif 9 layar smartphone DailyTask
-│   │   ├── 01_login.svg s/d 09_profile.svg
-│   │   └── wireframe_overview.png
-│   ├── architecture/
-│   │   ├── Architecture_Design.md
-│   │   └── architecture_dailytask.svg
-│   ├── database/
-│   │   ├── Database_ERD_Design.md
-│   │   ├── erd_dailytask.svg
-│   │   └── schema.sql
-│   └── api-design/
-│       └── REST_API_Design.md
-│
 ├── 04_LAPORAN_AKHIR/
-│   ├── Laporan_UTS.md                    # Laporan akhir lengkap (Soal 1, Soal 2, Soal 3, QA, & Kesimpulan)
-│   └── Laporan_UTS.pdf                   # Dokumen PDF siap kumpul hasil konversi Laporan_UTS
+│   ├── Laporan_UTS_Final_Marviel_David_411231222.pdf   # Dokumen PDF final siap kumpul (Soal 1 & Soal 2)
+│   ├── Laporan_UTS_Final_Marviel_David_411231222.docx  # Dokumen Word editable dari laporan final
+│   └── RecipeKu_Source_Code.zip                        # Arsip source code RecipeKu (tanpa node_modules)
 │
 └── README.md                             # Panduan utama repositori UTS
 ```
@@ -94,13 +72,4 @@ UTS_PEMROGRAMAN_MOBILE_LANJUT/
   * Detail resep (`GET https://dummyjson.com/recipes/{id}`) menampilkan gambar, deskripsi, *cuisine*, *rating*, waktu persiapan & memasak, porsi, kalori, ceklis bahan makanan, dan langkah memasak.
   * Pencarian resep berdasarkan bahan makanan (*Search by Ingredients*) menggunakan *client-side multi-ingredient filtering* di atas *cached Server State* (`GET /recipes?limit=50`) disertai penjelasan transparan keterbatasan API DummyJSON.
   * Penanganan *Loading State*, *Error State* dengan tombol *Retry*, serta *Caching* (`staleTime: 5 menit`, `gcTime: 30 menit`).
-
-### 3. Soal 3 – Perancangan Proyek Aplikasi Mobile: DailyTask (Bobot 45%)
-* **Lokasi Dokumen:** [`03_SOAL_3_DAILYTASK/dokumen-rancangan.md`](file:///c:/Users/User/OneDrive/Documents/UTS%20Mobile/UTS_PEMROGRAMAN_MOBILE_LANJUT/03_SOAL_3_DAILYTASK/dokumen-rancangan.md)
-* **Cakupan:**
-  * Identifikasi masalah, solusi, tujuan, manfaat, dan target pengguna.
-  * Analisis 11 kebutuhan fungsional dan 6 kebutuhan nonfungsional beserta tabel spesifikasi.
-  * Flowchart / Activity Diagram dan diagram navigasi 9 halaman.
-  * Wireframe visual untuk 9 halaman smartphone (`Login`, `Register`, `Dashboard`, `Daftar Tugas`, `Tambah Tugas`, `Edit Tugas`, `Detail Tugas`, `Riwayat Aktivitas`, `Profil`) dalam format HTML/CSS dan SVG.
-  * Arsitektur React Native, perancangan database relasional (`users` & `tasks`) beserta ERD dan SQL schema, serta rancangan 10 endpoint REST API backend.
 

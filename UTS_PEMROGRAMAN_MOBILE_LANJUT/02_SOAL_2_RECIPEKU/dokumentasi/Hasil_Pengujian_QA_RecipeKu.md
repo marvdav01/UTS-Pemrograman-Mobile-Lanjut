@@ -1,58 +1,103 @@
 # DOKUMENTASI PENGUJIAN DAN QUALITY ASSURANCE (QA) – APLIKASI RECIPEKU
 
-**Mata Kuliah:** Pemrograman Mobile Lanjut (412573401)  
+**Mata Kuliah:** 412573401 Pemrograman Mobile Lanjut (3 SKS)  
+**Dosen Pengampu:** Sahrial Ihsani Ishak, S.Kom., M.Kom  
+**Mahasiswa:** Marviel David (411231222)  
 **Nama Aplikasi:** RecipeKu – Indonesian Recipe Explorer (Soal 2)  
-**Metode Pengujian:** *Black-Box Functional Testing* & *Automated API/State Verification*  
-**Tanggal Pengujian:** 14 November 2026  
+**Metode Pengujian:** Pengujian Fungsional Manual (*Black-Box UI Testing*) & Verifikasi Kode/Konfigurasi (`verify_recipeku_api.js`)  
 
 ---
 
 ## 1. Lingkungan Pengujian (*Test Environment*)
 
-* **Runtime & Bundler:** Node.js `v24.12.0`, npm `11.6.2`, Expo SDK `52` (Metro Bundler `590 modules`).
-* **State & Network Library:** `@tanstack/react-query` `^5.66.0`, `axios` `^1.7.9`, `@react-navigation/native` `^7.0.14`.
-* **Target Platform Uji:** Expo Web Runtime (`react-native-web` dengan proporsi layar mobile) & Integrasi Langsung REST API DummyJSON (`https://dummyjson.com/recipes`).
+Spesifikasi lingkungan pengujian diselaraskan dengan konfigurasi aktual pada `package.json` dan `package-lock.json`:
+
+* **Runtime & Package Manager:** Node.js `v24.12.0`, npm `11.6.2`.
+* **Framework & SDK:** Expo `~58.0.25` (terinstal `58.0.25`), React Native `0.88.1`, React `19.3.0`.
+* **State & Network Library:** `@tanstack/react-query` `^5.66.0`, `axios` `^1.7.9`, `@react-navigation/native` `^7.0.14`, `@react-navigation/native-stack` `^7.2.0`, `@react-navigation/bottom-tabs` `^7.2.0`.
+* **Sumber Data REST API:** DummyJSON Recipes API (`https://dummyjson.com/recipes`).
 
 ---
 
-## 2. Tabel Hasil Pengujian (*Test Cases*)
+## 2. Cara Menjalankan Pengujian
 
-Seluruh 14 skenario pengujian berikut telah dieksekusi terhadap aplikasi **RecipeKu** dan diverifikasi terhadap respons asli server **DummyJSON Recipes API**:
+### A. Pengujian Fungsional Manual pada Antarmuka Aplikasi
+1. Masuk ke direktori proyek:
+   ```bash
+   cd RecipeKu
+   ```
+2. Pastikan seluruh *dependency* terinstal:
+   ```bash
+   npm install --legacy-peer-deps
+   ```
+3. Jalankan aplikasi menggunakan Expo:
+   ```bash
+   npx expo start --web
+   # atau untuk Android Emulator / Expo Go:
+   npx expo start
+   ```
+4. Lakukan pengujian berurutan terhadap 13 skenario wajib: pembukaan aplikasi, pemuatan daftar resep, tampilan gambar, pencarian nama (`"Pizza"`), pencarian tanpa hasil (`"RendangSateXYZ"`), halaman detail resep (`id: 1`), ceklis daftar bahan, panduan langkah memasak, pencarian berdasarkan bahan (`"Garlic"`), indikator *loading*, simulasi *error handling* melalui tombol **"🧪 Uji Error API"**, pemulihan melalui tombol **"🔄 Coba Lagi (Pulihkan Koneksi)"**, serta perpindahan halaman *Home ↔ Detail* untuk memverifikasi *caching* TanStack Query.
 
-| No | Fitur | Skenario Pengujian | Hasil yang Diharapkan | Hasil Aktual & Bukti Verifikasi | Status |
-| :-: | :--- | :--- | :--- | :--- | :---: |
-| **1** | **Pembukaan Aplikasi (App Launch)** | Membuka aplikasi `RecipeKu` dari *entry point* `App.js` (`QueryClientProvider` & `AppNavigator`). | Aplikasi berhasil dimuat tanpa *crash* maupun *error* pada terminal; menampilkan navigasi utama (`HomeScreen`) dengan *Header* **RecipeKu**. | Bundel berhasil dikompilasi (590 modul, 0 error) dan merender `HomeScreen` beserta *Bottom Tab Navigator* (`Beranda Resep`, `Cari Nama`, `Cari Bahan`). | **BERHASIL (PASS)** |
-| **2** | **Pengambilan Daftar Resep (`GET /recipes`)** | Saat `HomeScreen` dibuka pertama kali, hook `useRecipesList('All')` memanggil `GET https://dummyjson.com/recipes?limit=50&skip=0`. | Daftar resep berhasil diambil dari REST API dan ditampilkan menggunakan komponen `FlatList` dan `RecipeCard`. | Server mengembalikan `HTTP 200 OK` berisi 50 resep (dimulai dari *Classic Margherita Pizza*, *Vegetarian Stir-Fry*, *Chocolate Chip Cookies*, dst.). | **BERHASIL (PASS)** |
-| **3** | **Pemuatan Gambar Resep (*Image Rendering*)** | Memeriksa pemuatan gambar makanan (`recipe.image`) pada setiap `RecipeCard` di daftar resep maupun di halaman detail. | Gambar makanan dari CDN DummyJSON (`https://cdn.dummyjson.com/recipe-images/*.webp`) berhasil dimuat dengan proporsi `resizeMode="cover"`. | Seluruh gambar makanan tampil jelas dengan *overlay badge* kategori (*cuisine*) di kiri atas dan *badge rating* (`★ 4.6`) di kanan atas. | **BERHASIL (PASS)** |
-| **4** | **Pencarian Resep Berhasil (`GET /recipes/search?q=`)** | Membuka `SearchScreen`, mengetik kata kunci `"Pizza"` pada `SearchBar` (`TextInput`), dan menunggu *debounce* 450ms selesai. | Aplikasi memanggil endpoint `GET https://dummyjson.com/recipes/search?q=Pizza` dan menampilkan daftar resep yang cocok. | Setelah jeda *debounce* 450ms, API mengembalikan 2 resep yang cocok (*Classic Margherita Pizza* dan *Italian Margherita Pizza*) serta tombol hapus pencarian (`✕`) aktif. | **BERHASIL (PASS)** |
-| **5** | **Pencarian Tanpa Hasil (*Empty Search Result*)** | Mengetik kata kunci yang tidak ada di server, misalnya `"RendangSateKambingXYZ999"`, pada `SearchScreen`. | Aplikasi tidak *crash* dan menampilkan pesan khusus menggunakan komponen `EmptyState` beserta tombol **"Hapus Kata Kunci"**. | API mengembalikan `{ recipes: [], total: 0 }`; layar merender komponen `EmptyState` dengan judul *"Hasil Pencarian Tidak Ditemukan"* dan tombol reset. | **BERHASIL (PASS)** |
-| **6** | **Pembukaan Detail Resep (`GET /recipes/{id}`)** | Menekan salah satu kartu resep (misalnya *Classic Margherita Pizza*, `id = 1`) dari `HomeScreen` atau `SearchScreen`. | Aplikasi bernavigasi ke `DetailScreen` dan menampilkan gambar, nama, deskripsi, *cuisine*, *rating*, *prep time*, *cook time*, *servings*, dan *calories*. | `DetailScreen` terbuka menampilkan *Classic Margherita Pizza* (`Italian`, `★ 4.6`, Persiapan `20 mnt`, Memasak `15 mnt`, `4 Porsi`, `300 kkal/Porsi`). | **BERHASIL (PASS)** |
-| **7** | **Penampilan Daftar Bahan Makanan (*Ingredients*)** | Memeriksa bagian **Daftar Bahan Makanan** pada `DetailScreen` untuk resep yang dipilih (`id = 1`). | Seluruh item pada array `recipe.ingredients` tampil lengkap dan dapat dicentang (*interactive checklist*). | Menampilkan 6 bahan (*Pizza dough*, *Tomato sauce*, *Fresh mozzarella cheese*, *Fresh basil leaves*, *Olive oil*, *Salt and pepper to taste*) dengan fitur ceklis berfungsi. | **BERHASIL (PASS)** |
-| **8** | **Penampilan Langkah-Langkah Memasak (*Instructions*)** | Memeriksa bagian **Langkah-Langkah Memasak** pada `DetailScreen` serta menekan tombol **"👨‍🍳 Mode Memasak"** (`CookingInstructionsScreen`). | Seluruh urutan langkah memasak (`recipe.instructions`) tampil berurutan dengan nomor langkah dan progres penyelesaian. | Menampilkan 6 langkah memasak secara berurutan dari Langkah 1 (*Preheat the oven to 475°F...*) hingga Langkah 6 (*Slice and serve hot*), serta halaman *Mode Memasak* interaktif berjalan lancar. | **BERHASIL (PASS)** |
-| **9** | **Pencarian Berdasarkan Bahan (*Search by Ingredients*)** | Membuka tab **Cari Bahan (`IngredientsScreen`)** dan memilih chip bahan `"Garlic"` dan `"Chicken"`. | Aplikasi memfilter data resep dari cache `GET /recipes?limit=50` yang mengandung kedua bahan tersebut dan menampilkan bahan yang cocok pada kartu. | Menampilkan daftar resep yang mengandung *Garlic* + *Chicken* beserta kotak hijau *"✓ Bahan cocok"* dan penjelasan teknis keterbatasan endpoint DummyJSON. | **BERHASIL (PASS)** |
-| **10** | **Tampilan Indikator Loading (`Loading.js`)** | Mengamati tampilan layar saat pengambilan data awal (*initial fetch* ketika cache masih kosong) atau saat memilih kategori baru. | Komponen `Loading` tampil dengan `ActivityIndicator`, pesan status, dan *skeleton card preview* sehingga layar tidak pernah tampak putih kosong. | Komponen `Loading.js` tampil dengan spinner hijau dan *skeleton card* sebelum data selesai dimuat. | **BERHASIL (PASS)** |
-| **11** | **Penanganan Kegagalan API (*Error Handling*)** | Mengaktifkan simulasi kegagalan jaringan (menekan tombol **"🧪 Uji Error API"** pada `HomeScreen` atau memutus koneksi). | Aplikasi menangkap eksepsi dan merender komponen `ErrorState` berisi pesan ramah pengguna serta detail teknis tanpa menyebabkan aplikasi *crash*. | Komponen `ErrorState.js` tampil rapi dengan ikon peringatan `⚠️`, pesan *"Gagal Memuat Daftar Resep"*, dan tombol **"🔄 Coba Lagi"**. | **BERHASIL (PASS)** |
-| **12** | **Pemulihan Koneksi via Tombol Retry** | Menekan tombol **"🔄 Coba Lagi (Pulihkan Koneksi)"** pada layar `ErrorState`. | Fungsi `refetch()` TanStack Query dipanggil ulang, koneksi pulih, dan daftar 50 resep kembali ditampilkan di layar. | Setelah tombol *Retry* ditekan, status `isError` berubah menjadi `isSuccess` dan daftar 50 resep langsung tampil kembali. | **BERHASIL (PASS)** |
-| **13** | **Mekanisme Caching TanStack Query (`staleTime` & `gcTime`)** | Membuka `HomeScreen`, masuk ke `DetailScreen` resep #1, kembali ke `HomeScreen`, lalu membuka kembali resep #1 dalam kurun waktu < 5 menit (`staleTime`). | Data disajikan langsung dari memori *cache* TanStack Query (0 ms *loading*) tanpa menampilkan layar *loading* ulang, ditandai dengan indikator *"• Tersimpan di Cache"*. | Timestamp `Cache: HH:MM:SS` pada `HomeScreen` dan label *"• Tersimpan di Cache"* pada `DetailScreen` membuktikan data diambil dari memori *cache* secara instan. | **BERHASIL (PASS)** |
-| **14** | **Filter Kategori Tag (`GET /recipes/tag/{tag}`)** | Menekan salah satu chip kategori kuliner pada `HomeScreen`, misalnya `"Italian"` atau `"Asian"`. | Hook `useRecipesList(selectedTag)` memanggil endpoint `/recipes/tag/{tag}` dan menyimpannya ke `queryKey: ['recipes', 'list', tag]`. | Kategori `"Italian"` menampilkan 6 resep khas Italia dan tersimpan di dalam cache tersendiri per kategori. | **BERHASIL (PASS)** |
-
----
-
-## 3. Log Eksekusi Pengujian Otomatis (`verify_recipeku_api.js`)
-
-```text
-=== MEMULAI PENGUJIAN OTOMATIS API & LOGIKA RECIPEKU ===
-
-[PASS] Test 1 - GET /recipes: Berhasil mengambil 50 resep (Total di server: 50).
-       Contoh Resep #1: Classic Margherita Pizza | Cuisine: Italian | Rating: 4.6 | Image: https://cdn.dummyjson.com/recipe-images/1.webp
-[PASS] Test 2 - GET /recipes/search?q=Pizza: Ditemukan 2 resep (Classic Margherita Pizza, Italian Margherita Pizza).
-[PASS] Test 3 - GET /recipes/search?q=RendangSateKambingXYZ999: Ditemukan 0 resep (EmptyState terpicu dengan benar).
-[PASS] Test 4 - GET /recipes/1: "Classic Margherita Pizza" | Prep: 20m | Cook: 15m | Servings: 4 | Calories: 300
-       Jumlah Bahan: 6 bahan | Jumlah Langkah: 6 langkah.
-[PASS] Test 5 - GET /recipes/tags & /recipes/tag/Italian: Total 87 tag tersedia, kategori Italian memiliki 6 resep.
-[PASS] Test 6a - Error Handling: Eksepsi jaringan tertangkap dengan pesan: "Gagal terhubung ke server DummyJSON API. Periksa koneksi internet Anda atau coba beberapa saat lagi."
-[PASS] Test 6b - Retry Recovery: Pemanggilan ulang berhasil memulihkan 5 resep.
-
-=== SELURUH PENGUJIAN API & LOGIKA BERHASIL (100% PASS) ===
+### B. Verifikasi Struktur, Konfigurasi, dan Logika melalui Skrip (`verify_recipeku_api.js`)
+Jalankan perintah berikut dari direktori proyek:
+```bash
+node verify_recipeku_api.js
 ```
 
+---
+
+## 3. Tabel Hasil Pengujian Fungsional Quality Assurance
+
+Tabel berikut memisahkan secara tegas antara **Skenario Pengujian**, **Hasil yang Diharapkan**, **Hasil Aktual**, **Bukti Visual**, dan **Status Verifikasi**:
+
+| No | Fitur yang Diuji | Skenario Pengujian | Hasil yang Diharapkan | Hasil Aktual (Terverifikasi dari Implementasi & Eksekusi Aplikasi) | Bukti Visual | Status |
+| :-: | :--- | :--- | :--- | :--- | :--- | :---: |
+| **1** | **Aplikasi Berhasil Dibuka** | Menjalankan aplikasi `RecipeKu` dari `App.js` (`SafeAreaProvider`, `QueryClientProvider`, dan `AppNavigator`). | Aplikasi berhasil dibuka tanpa *error* atau *crash*, serta menampilkan halaman utama (`HomeScreen`) beserta *Bottom Tab* (`Beranda`, `Cari Resep`, `Cari Bahan`). | Aplikasi tampil normal tanpa *error* terminal; *Header* `🌿 RecipeKu – Explorer`, *hero banner* hijau, *SearchBar*, chip kategori, dan *Bottom Tab Navigator* ter-render dengan utuh. | `01_home_screen.png` | **BERHASIL** |
+| **2** | **Daftar Resep Berhasil Dimuat** | Membuka `HomeScreen` sehingga `useRecipesList('All')` memanggil `GET /recipes?limit=50&skip=0`. | Daftar resep berhasil diambil dari REST API dan ditampilkan menggunakan komponen `FlatList` dan `RecipeCard`. | Server mengembalikan 50 resep (`Cache: 15.57.03 (50 resep)`); kartu resep pertama (*Classic Margherita Pizza*) dan resep berikutnya tampil lengkap dengan nama, kategori, waktu memasak, kalori, dan *rating*. | `01_home_screen.png` | **BERHASIL** |
+| **3** | **Gambar Resep Tampil** | Memeriksa pemuatan gambar makanan (`recipe.image`) pada setiap `RecipeCard` di `FlatList` dan gambar utama di `DetailScreen`. | Gambar makanan dari CDN DummyJSON berhasil dimuat dan tampil proporsional (`resizeMode="cover"`). | Gambar makanan tampil jelas dan proporsional dilengkapi *badge overlay* kategori (`Italian • Dinner`) di kiri atas serta *rating* (`★ 4.6 (98)`) di kanan atas. | `01_home_screen.png`, `04_detail_screen.png` | **BERHASIL** |
+| **4** | **Pencarian Berdasarkan Nama** | Membuka `SearchScreen`, mengetik kata kunci `"Pizza"` pada `SearchBar`, dan menunggu jeda *debounce* 450 ms. | Aplikasi memanggil `GET /recipes/search?q=Pizza` setelah *debounce* 450 ms dan menampilkan daftar resep yang cocok. | Tampil indikator `Endpoint: GET https://dummyjson.com/recipes/search?q=Pizza` dan badge `✓ Ditemukan 2 resep untuk "Pizza"`, diikuti kartu resep Pizza yang relevan. | `02_search_pizza.png` | **BERHASIL** |
+| **5** | **Pencarian Tanpa Hasil** | Mengetik kata kunci yang tidak tersedia di server, yaitu `"RendangSateXYZ"`, pada `SearchScreen`. | Aplikasi tidak mengalami *error/crash* dan merender komponen `EmptyState` beserta tombol untuk menghapus kata kunci. | Tampil badge `✓ Ditemukan 0 resep untuk "RendangSateXYZ"` dan komponen `EmptyState` berjudul *"Hasil Pencarian Tidak Ditemukan"* lengkap dengan tombol **"Hapus Kata Kunci"**. | `03_search_empty.png` | **BERHASIL** |
+| **6** | **Detail Resep** | Mengetuk kartu resep *Classic Margherita Pizza* (`id: 1`) untuk membuka `DetailScreen` (`GET /recipes/1`). | Halaman detail menampilkan gambar, nama resep, deskripsi, *cuisine*, tingkat kesulitan, waktu persiapan, waktu memasak, porsi, dan kalori. | `DetailScreen` menampilkan *Classic Margherita Pizza*, badge `🌍 Italian`, `★ 4.6 (98 ulasan)`, `Dinner`, `Tingkat: Mudah`, Persiapan `20 mnt`, Memasak `15 mnt`, `4 Porsi`, `300 kkal / Porsi`, dan `Total Waktu: 35 menit`. | `04_detail_screen.png` | **BERHASIL** |
+| **7** | **Daftar Bahan Makanan** | Memeriksa bagian **Daftar Bahan Makanan** pada `DetailScreen` resep #1 dan mengetuk baris bahan untuk mencentang. | Seluruh bahan pada `recipe.ingredients` tampil lengkap dan mendukung fitur ceklis interaktif (`checkedIngredients`). | Keenam bahan (*Pizza dough*, *Tomato sauce*, *Fresh mozzarella cheese*, *Fresh basil leaves*, *Olive oil*, *Salt and pepper to taste*) tampil lengkap dengan kotak ceklis interaktif (`0/6`). | `04_detail_screen.png` | **BERHASIL** |
+| **8** | **Langkah Memasak** | Memeriksa bagian **Langkah-Langkah Memasak** pada `DetailScreen` lalu menekan tombol **"👨‍🍳 Mode Memasak"** (`CookingInstructionsScreen`). | Seluruh langkah memasak (`recipe.instructions`) tampil berurutan dengan nomor langkah, navigasi *Sebelumnya/Berikutnya*, dan indikator progres. | Halaman `CookingInstructionsScreen` menampilkan panduan interaktif *Classic Margherita Pizza* (`Progres Selesai: 0 dari 6 langkah`), kartu `Langkah Aktif: 1 / 6`, tombol `Tandai Selesai`, dan daftar lengkap Langkah 1 s/d 6. | `06_cooking_instructions.png` | **BERHASIL** |
+| **9** | **Pencarian Berdasarkan Bahan** | Membuka `IngredientsScreen` (`Cari Bahan`) dan memilih chip bahan **`Garlic`**. | Hook `useRecipesByIngredients()` memfilter data resep di *cache* (`GET /recipes?limit=50`) menggunakan `useMemo` terhadap `recipe.ingredients`. | Chip `✓ Garlic (20)` aktif, menampilkan kotak informasi teknis keterbatasan API DummyJSON serta ringkasan `Ditemukan 20 resep yang mengandung: garlic` beserta kartu resep yang cocok. | `05_ingredients_screen.png` | **BERHASIL** |
+| **10** | **Loading State** | Mengamati tampilan saat pengambilan data awal (*initial loading* ketika `isLoading: true` dan *cache* masih kosong). | Komponen `Loading.js` tampil dengan `ActivityIndicator`, pesan pemuatan, dan 2 kartu *skeleton preview*. | Saat `isLoading` bernilai `true` pada `HomeScreen`, `DetailScreen`, atau `IngredientsScreen`, komponen `Loading.js` merender spinner hijau dan *skeleton card* sebelum data tampil. | Terverifikasi pada kode `Loading.js` & `HomeScreen.js` | **BERHASIL** |
+| **11** | **Error Handling** | Mengaktifkan simulasi gangguan jaringan melalui tombol **"🧪 Uji Error API"** pada `HomeScreen` (`setSimulateNetworkError(true)`). | Aplikasi menangkap *error* jaringan dan merender komponen `ErrorState.js` tanpa mengalami *force close / crash*. | Layar menampilkan komponen `ErrorState` dengan judul *"Gagal Memuat Daftar Resep"*, pesan kesalahan koneksi, dan kotak `Detail Teknis: QueryKey: JSON.stringify(['recipes', 'list', 'All'])`. | `07_error_retry_state.png` | **BERHASIL** |
+| **12** | **Tombol Retry** | Menekan tombol **"🔄 Coba Lagi (Pulihkan Koneksi)"** pada komponen `ErrorState`. | Fungsi `handleRetryFromError` menonaktifkan simulasi *error*, memanggil `await refetch()`, dan memulihkan tampilan katalog resep. | Tombol Retry berhasil mengeksekusi `refetch()` pada TanStack Query dan mengembalikan tampilan 50 resep di `HomeScreen`. | `07_error_retry_state.png` & `01_home_screen.png` | **BERHASIL** |
+| **13** | **Caching TanStack Query** | Berpindah dari `HomeScreen` ke `DetailScreen` resep #1 lalu kembali ke `HomeScreen` dalam durasi `< 5 menit` (`staleTime`). | Data disajikan langsung dari memori *cache* (`initialData` & Query Cache) secara instan tanpa pemuatan ulang dari jaringan. | Pada `HomeScreen` tercatat timestamp `Cache: 15.57.03 (50 resep)` dan pada `DetailScreen` tampil indikator hijau `• Tersimpan di Cache` tanpa layar *loading* berulang. | `01_home_screen.png`, `04_detail_screen.png` | **BERHASIL** |
+
+---
+
+## 4. Hasil Eksekusi Skrip Verifikasi (`verify_recipeku_api.js`)
+
+Berikut adalah log aktual hasil eksekusi perintah `node RecipeKu/verify_recipeku_api.js`:
+
+```text
+======================================================================
+  VERIFIKASI STRUKTUR, LOGIKA, & INTEGRASI API APLIKASI RECIPEKU
+======================================================================
+
+--- [1] Verifikasi Struktur File Proyek React Native ---
+[PASS] Seluruh 20 file inti proyek RecipeKu tersedia lengkap.
+
+--- [2] Verifikasi Konfigurasi Dependency (package.json) ---
+[PASS] Dependency utama terverifikasi: expo (~58.0.25), react-native (0.88.1), react (19.3.0), @tanstack/react-query (^5.66.0), axios (^1.7.9).
+
+--- [3] Verifikasi Konfigurasi TanStack Query ---
+[PASS] App.js menginisialisasi QueryClient & QueryClientProvider dengan staleTime, gcTime, retry: 1, dan refetchOnReconnect: true.
+[PASS] src/hooks/useRecipes.js mendefinisikan STALE_TIME (5 menit), GC_TIME (30 menit), RECIPE_QUERY_KEYS, initialData cache hydration, dan 5 custom hooks.
+
+--- [4] Verifikasi Modul Layanan REST API (src/api/recipeApi.js) ---
+[PASS] src/api/recipeApi.js mengimplementasikan ke-5 endpoint resmi DummyJSON (/recipes, /recipes/search, /recipes/{id}, /recipes/tags, /recipes/tag/{tag}).
+
+--- [5] Verifikasi Logika Pencarian Nama (Debounce) & Bahan Makanan ---
+[PASS] SearchScreen.js menerapkan useDebounce(searchText, 450) untuk pencarian nama makanan.
+[PASS] Algoritma filtering bahan makanan (recipe.ingredients) mencocokkan kata kunci "Garlic" secara case-insensitive dengan akurat.
+
+--- [6] Uji Konektivitas Langsung Endpoint DummyJSON Recipes API ---
+[LIVE API SKIPPED] Lingkungan eksekusi saat ini tidak memiliki akses jaringan eksternal (offline/sandbox). Verifikasi API mengacu pada kode sumber dan bukti eksekusi tangkapan layar aplikasi.
+
+======================================================================
+  HASIL VERIFIKASI LOKAL: 7/7 PEMERIKSAAN LULUS (100%)
+======================================================================
+```
