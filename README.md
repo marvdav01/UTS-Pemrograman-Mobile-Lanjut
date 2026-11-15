@@ -39,11 +39,6 @@ UTS_PEMROGRAMAN_MOBILE_LANJUT/
 │   │   └── Hasil_Pengujian_QA_RecipeKu.md
 │   └── README.md
 │
-├── 04_LAPORAN_AKHIR/
-│   ├── Laporan_UTS_Final_Marviel_David_411231222.pdf   # Dokumen PDF final siap kumpul (Soal 1 & Soal 2)
-│   ├── Laporan_UTS_Final_Marviel_David_411231222.docx  # Dokumen Word editable dari laporan final
-│   └── RecipeKu_Source_Code.zip                        # Arsip source code RecipeKu (tanpa node_modules)
-│
 └── README.md                             # Panduan utama repositori UTS
 ```
 
