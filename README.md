@@ -69,3 +69,55 @@ UTS_PEMROGRAMAN_MOBILE_LANJUT/
   * Pencarian resep berdasarkan bahan makanan (*Search by Ingredients*) menggunakan *client-side multi-ingredient filtering* di atas *cached Server State* (`GET /recipes?limit=50`) disertai penjelasan transparan keterbatasan API DummyJSON.
   * Penanganan *Loading State*, *Error State* dengan tombol *Retry*, serta *Caching* (`staleTime: 5 menit`, `gcTime: 30 menit`).
 
+---
+
+## Dokumentasi Tangkapan Layar Aplikasi RecipeKu
+
+Berikut adalah 7 tangkapan layar aktual dari aplikasi **RecipeKu – Indonesian Recipe Explorer** beserta penjelasan masing-masing fitur:
+
+<table>
+  <tr>
+    <td align="center" width="50%">
+      <img src="UTS_PEMROGRAMAN_MOBILE_LANJUT/02_SOAL_2_RECIPEKU/screenshots/01_home_screen.png" alt="Home Screen" width="250" /><br/>
+      <strong>1. Home Screen</strong><br/>
+      <sub>Menampilkan katalog 50 resep dari <code>GET /recipes?limit=50</code> menggunakan <code>FlatList</code>, filter kategori/tag kuliner, serta indikator status <em>cache</em> TanStack Query.</sub>
+    </td>
+    <td align="center" width="50%">
+      <img src="UTS_PEMROGRAMAN_MOBILE_LANJUT/02_SOAL_2_RECIPEKU/screenshots/02_search_pizza.png" alt="Search Screen Pizza" width="250" /><br/>
+      <strong>2. Search Screen ("Pizza")</strong><br/>
+      <sub>Pencarian resep berdasarkan nama makanan via <code>GET /recipes/search?q=Pizza</code> dengan mekanisme <em>debounce</em> 450 ms agar pemanggilan API lebih efisien.</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <img src="UTS_PEMROGRAMAN_MOBILE_LANJUT/02_SOAL_2_RECIPEKU/screenshots/03_search_empty.png" alt="Empty Search State" width="250" /><br/>
+      <strong>3. Empty Search State</strong><br/>
+      <sub>Tampilan komponen <code>EmptyState.js</code> ketika kata kunci tidak ditemukan (contoh: <code>"RendangSateXYZ"</code>), lengkap dengan tombol <em>Hapus Kata Kunci</em>.</sub>
+    </td>
+    <td align="center" width="50%">
+      <img src="UTS_PEMROGRAMAN_MOBILE_LANJUT/02_SOAL_2_RECIPEKU/screenshots/04_detail_screen.png" alt="Detail Screen" width="250" /><br/>
+      <strong>4. Detail Screen</strong><br/>
+      <sub>Menampilkan detail resep (<code>GET /recipes/{id}</code>) beserta <em>initial cache hydration</em>: gambar hero, waktu persiapan &amp; memasak, porsi, kalori, rating, serta ceklis bahan makanan.</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <img src="UTS_PEMROGRAMAN_MOBILE_LANJUT/02_SOAL_2_RECIPEKU/screenshots/05_ingredients_screen.png" alt="Search by Ingredients" width="250" /><br/>
+      <strong>5. Search by Ingredients ("Garlic")</strong><br/>
+      <sub>Filter multi-bahan di sisi <em>client</em> menggunakan <code>useMemo</code> terhadap properti <code>recipe.ingredients</code> dari data <em>cache</em> <code>GET /recipes?limit=50</code> (menemukan 20 resep mengandung <em>garlic</em>).</sub>
+    </td>
+    <td align="center" width="50%">
+      <img src="UTS_PEMROGRAMAN_MOBILE_LANJUT/02_SOAL_2_RECIPEKU/screenshots/06_cooking_instructions.png" alt="Cooking Instructions" width="250" /><br/>
+      <strong>6. Cooking Instructions</strong><br/>
+      <sub>Mode panduan memasak interaktif langkah demi langkah dengan navigasi <em>Sebelumnya/Berikutnya</em> serta pelacakan progres penyelesaian.</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" colspan="2">
+      <img src="UTS_PEMROGRAMAN_MOBILE_LANJUT/02_SOAL_2_RECIPEKU/screenshots/07_error_retry_state.png" alt="Error Handling & Retry" width="250" /><br/>
+      <strong>7. Error Handling &amp; Retry State</strong><br/>
+      <sub>Tampilan komponen <code>ErrorState.js</code> saat simulasi gangguan jaringan aktif, menampilkan detail teknis <code>QueryKey</code> dan tombol <em>Coba Lagi</em> untuk memanggil <code>refetch()</code> tanpa menyebabkan <em>crash</em>.</sub>
+    </td>
+  </tr>
+</table>
+
